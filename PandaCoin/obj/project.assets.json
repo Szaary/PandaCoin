@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
+      "projectUniqueName": "E:\\Projects\\CSharp\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
       "projectName": "PandaCoin",
-      "projectPath": "E:\\Projects\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
+      "projectPath": "E:\\Projects\\CSharp\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
       "packagesPath": "C:\\Users\\Szary\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\PandaCoin\\PandaCoin\\obj\\",
+      "outputPath": "E:\\Projects\\CSharp\\PandaCoin\\PandaCoin\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Szary\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -60,7 +60,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.303\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

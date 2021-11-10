@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "bZcW//GCs+9P2TF4fKRAHXtn5BGIfmXPkHi52ujQhl7RpGLKREX4ryRHnUuEdU+uFkKnMQjCoHxxAWPIwPgtmA==",
+  "dgSpecHash": "yL7OsSiFTHioPscTioV7/J2zf4pcxL+8J15/OOK9jjV2ak1wr4OBSpQ3RgiA8nKG5lHGOxII7Ha59BRaBhhd5A==",
   "success": true,
-  "projectFilePath": "E:\\Projects\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
+  "projectFilePath": "E:\\Projects\\CSharp\\PandaCoin\\PandaCoin\\PandaCoin.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
