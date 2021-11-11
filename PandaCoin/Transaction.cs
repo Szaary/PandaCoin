@@ -1,5 +1,8 @@
 ﻿namespace PandaCoin
 {
+    /// <summary>
+    /// Klasa zawierająca dane pojedynczej transakcji w blockchainie.
+    /// </summary>
     public class Transaction
     {
         /// <summary>
