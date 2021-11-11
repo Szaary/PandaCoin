@@ -82,7 +82,7 @@ namespace PandaCoin
         /// <returns></returns>
         public string CreateHash()
         {
-            using (SHA256 sha256 = SHA256.Create())
+            using (var sha256 = SHA256.Create())
             {
                 var blockTransactions="";
                 foreach (var transaction in Transactions)

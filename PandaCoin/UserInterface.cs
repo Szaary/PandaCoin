@@ -53,24 +53,28 @@ namespace PandaCoin
                 }
                 else if (command == "6")
                 {
-                    if (_blockChain.Chain.Count > 1)
-                    {
-                        _blockChain.Chain[1].Transactions = new List<Transaction>()
-                        {
-                            new("", "Michal", 3000)
-                        };
-                    }
-                    else
-                    {
-                        Console.WriteLine("Blockchain is still empty.");
-                    }
- 
+                    TryToCheat();
                 }
                 else if (command == "9")
                 {
                     Console.WriteLine("Exiting application");
                     break;
                 }
+            }
+        }
+
+        private void TryToCheat()
+        {
+            if (_blockChain.Chain.Count > 1)
+            {
+                _blockChain.Chain[1].Transactions = new List<Transaction>()
+                {
+                    new("", "Michal", 3000)
+                };
+            }
+            else
+            {
+                Console.WriteLine("Blockchain is still empty.");
             }
         }
 

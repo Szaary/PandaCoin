@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace PandaCoin
+﻿namespace PandaCoin
 {
     /// <summary>
     /// Implementacja prostego blockchaina na podstawie:
