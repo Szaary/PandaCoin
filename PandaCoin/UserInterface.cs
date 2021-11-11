@@ -21,13 +21,14 @@ namespace PandaCoin
                 Console.WriteLine("Is blockchain valid: {0}", _blockChain.IsValidChain());
 
                 Console.WriteLine("\n PandaCoin - is blockchain valid: {0}", _blockChain.IsValidChain() +
-                                  "\n1 - Create user\n" +
-                                  "2 - Create transaction\n" +
-                                  "3 - Start mining\n" +
-                                  "4 - Check user wallet\n" +
-                                  "5 - Print Chain\n" +
-                                  "6 - Try To Cheat\n" +
-                                  "9 - Exit");
+                                                                             "\n1 - Create user\n" +
+                                                                             "2 - Create transaction\n" +
+                                                                             "3 - Start mining\n" +
+                                                                             "4 - Check user wallet\n" +
+                                                                             "5 - Print Chain\n" +
+                                                                             "6 - Try To Cheat\n" +
+                                                                             "7 - Change Mine Difficulty\n"+
+                                                                             "9 - Exit");
 
                 var command = Console.ReadLine();
 
@@ -55,11 +56,26 @@ namespace PandaCoin
                 {
                     TryToCheat();
                 }
+                else if (command == "7")
+                {
+                    ChangeMineDifficulty();
+                }
                 else if (command == "9")
                 {
                     Console.WriteLine("Exiting application");
                     break;
                 }
+            }
+        }
+
+        private void ChangeMineDifficulty()
+        {
+            Console.WriteLine("Current mine difficulty is: {0}. Set new difficulty to: ", _blockChain.GetCurrentDifficulty());
+            var difficulty = Console.ReadLine();
+            
+            if (int.TryParse(difficulty, out var verifiedDifficulty))
+            {
+                _blockChain.SetMineDifficulty(verifiedDifficulty);
             }
         }
 
@@ -110,7 +126,7 @@ namespace PandaCoin
             var miner = Console.ReadLine();
             if (_usersDatabase.CheckIfUserExist(miner))
             {
-                Console.WriteLine("Started Mining Block: ");
+                Console.WriteLine("Started Mining Block with difficulty: {0}.", _blockChain.GetCurrentDifficulty());
                 _blockChain.MineBlock(miner);
                 Console.WriteLine("BALANCE of the miner changed to: {0}", _blockChain.GetBalance(miner));
             }

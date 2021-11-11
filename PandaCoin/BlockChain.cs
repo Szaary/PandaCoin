@@ -13,7 +13,7 @@ namespace PandaCoin
         /// Trudność stworzenia nowego bloku. Zawiera informację
         /// jak dużo zer powinno znajdować się na początku bloku.
         /// </summary>
-        private readonly int _proofOfWorkDifficulty;
+        private int _proofOfWorkDifficulty;
 
         /// <summary>
         /// Wielkość nagrody (w transakcji), jaką otrzyma kopiący blok po wykopaniu kryptowaluty.
@@ -46,6 +46,18 @@ namespace PandaCoin
             _miningReward = miningReward;
             _pendingTransactions = new List<Transaction>();
             Chain = new List<Block>() {CreateGenesisBlock()};
+        }
+
+        public int GetCurrentDifficulty()
+        {
+            return _proofOfWorkDifficulty;
+        }
+        public bool SetMineDifficulty(int difficulty)
+        {
+            if (difficulty <= 0) return false;
+            
+            _proofOfWorkDifficulty = difficulty;
+            return true;
         }
 
         /// <summary>
@@ -135,11 +147,13 @@ namespace PandaCoin
                 {
                     return false;
                 }
+
                 if (currentBlock.Hash != currentBlock.CreateHash())
                 {
                     return false;
                 }
             }
+
             return true;
         }
 
