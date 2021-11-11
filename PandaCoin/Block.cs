@@ -27,7 +27,8 @@ namespace PandaCoin
         public string PreviousHash { get; set; }
 
         /// <summary>
-        /// Dane, jakie zawierać będzie blok. Zmienić na prywatną po demonstracji.
+        /// Dane, jakie zawierać będzie blok. Publiczna w celach testowych, ustawiony celowo set, by mozna bylo
+        /// zaprezentowac validacje bloku.
         /// </summary>
         public List<Transaction> Transactions { get; set; }
 
@@ -83,7 +84,13 @@ namespace PandaCoin
         {
             using (SHA256 sha256 = SHA256.Create())
             {
-                var rawData = PreviousHash + _timeStamp + Transactions + _nonce;
+                var blockTransactions="";
+                foreach (var transaction in Transactions)
+                {
+                    blockTransactions += transaction.From + transaction.To + transaction.Amount;
+                }
+                
+                var rawData = PreviousHash + _timeStamp + blockTransactions + _nonce;
                 var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
                 return Encoding.Default.GetString(bytes);
             } 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace PandaCoin
 {
@@ -18,17 +19,18 @@ namespace PandaCoin
             while (true)
             {
                 Console.WriteLine("Is blockchain valid: {0}", _blockChain.IsValidChain());
-                
-                Console.WriteLine("\n PandaCoin\n" +
-                                  "1 - Create user\n" +
-                                  "2 - Create transaction\n"+
-                                  "3 - Start mining\n"+
-                                  "4 - Check user wallet\n"+
-                                  "5 - Print Chain\n"+
+
+                Console.WriteLine("\n PandaCoin - is blockchain valid: {0}", _blockChain.IsValidChain() +
+                                  "\n1 - Create user\n" +
+                                  "2 - Create transaction\n" +
+                                  "3 - Start mining\n" +
+                                  "4 - Check user wallet\n" +
+                                  "5 - Print Chain\n" +
+                                  "6 - Try To Cheat\n" +
                                   "9 - Exit");
-                
+
                 var command = Console.ReadLine();
-                
+
                 if (command == "1")
                 {
                     _usersDatabase.CreateUser();
@@ -49,12 +51,26 @@ namespace PandaCoin
                 {
                     PrintChain();
                 }
+                else if (command == "6")
+                {
+                    if (_blockChain.Chain.Count > 1)
+                    {
+                        _blockChain.Chain[1].Transactions = new List<Transaction>()
+                        {
+                            new("", "Michal", 3000)
+                        };
+                    }
+                    else
+                    {
+                        Console.WriteLine("Blockchain is still empty.");
+                    }
+ 
+                }
                 else if (command == "9")
                 {
                     Console.WriteLine("Exiting application");
                     break;
                 }
-
             }
         }
 
@@ -68,9 +84,11 @@ namespace PandaCoin
 
                 foreach (var transaction in block.Transactions)
                 {
-                    Console.WriteLine("Transaction From: {0} To: {1} Amount {2}", 
+                    Console.WriteLine("Transaction From: {0} To: {1} Amount {2}",
                         transaction.From, transaction.To, transaction.Amount);
                 }
+
+                Console.WriteLine("--------------------------------------------------\n");
             }
         }
 
@@ -96,7 +114,6 @@ namespace PandaCoin
             {
                 Console.WriteLine("Miner does not exist in miner database.");
             }
-            
         }
 
         private void CreateTransaction()
@@ -108,7 +125,7 @@ namespace PandaCoin
             Console.WriteLine("Write amount: ");
             var amount = Console.ReadLine();
 
-            if(double.TryParse(amount, out var verifiedAmount))
+            if (double.TryParse(amount, out var verifiedAmount))
             {
                 Console.WriteLine(_blockChain.CreateTransaction(new Transaction(@from, to, verifiedAmount))
                     ? "Transaction added to pending Transactions."

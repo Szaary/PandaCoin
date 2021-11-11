@@ -23,7 +23,7 @@ namespace PandaCoin
             else
             {
                 _userAddress.Add(address);
-                Console.WriteLine("User created. (authentication logic etc.)");
+                Console.WriteLine("User created: {0}. (authentication logic etc.)", address);
             }
         }
 

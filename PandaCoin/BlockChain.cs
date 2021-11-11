@@ -92,6 +92,7 @@ namespace PandaCoin
 
             AddBlockToChain(block);
         }
+
         /// <summary>
         /// Funkcja tworzy nagrodę dla osoby, która wykopie blok i dodawana jest do listy oczekujących
         /// transakcji.
@@ -102,7 +103,7 @@ namespace PandaCoin
             var minerRewardTransaction = new Transaction(null, minerAddress, _miningReward);
             _pendingTransactions.Add(minerRewardTransaction);
         }
-        
+
         /// <summary>
         /// Jeśli wykopiemy prawidłowy hash dodajemy hash wczesniejszego bloku do zmiennej
         /// PreviousHash nowo wykopanemu blokowi i dodajemy nasz blok
@@ -114,12 +115,12 @@ namespace PandaCoin
         {
             block.PreviousHash = Chain.Last().Hash;
             Chain.Add(block);
-            _pendingTransactions = new ();
+            _pendingTransactions = new();
         }
 
         /// <summary>
         /// Funkcja sprawcza, czy blockchain jest prawidłowy. Dla każdego bloku w chainie
-        /// sprawdzane jest, czy wcześniejszy i poprzedni blok mają takie same hashe jak te stworzone przy
+        /// sprawdzane jest, czy ten i poprzedni blok mają takie same hashe jak te stworzone przy
         /// utworzeniu bloku. 
         /// </summary>
         /// <returns>True jeśli blok jest prawidłowy</returns>
@@ -130,24 +131,15 @@ namespace PandaCoin
                 var previousBlock = Chain[i - 1];
                 var currentBlock = Chain[i];
 
-
                 if (currentBlock.PreviousHash != previousBlock.Hash)
                 {
-                    Console.WriteLine("FOR DEBUG PURPOSES!");
-                    Console.WriteLine(currentBlock.PreviousHash + " - Current Block Previous Hash");
-                    Console.WriteLine(previousBlock.Hash + " - Previous Block Hash");
                     return false;
                 }
-
                 if (currentBlock.Hash != currentBlock.CreateHash())
                 {
-                    Console.WriteLine("FOR DEBUG PURPOSES!");
-                    Console.WriteLine(currentBlock.Hash + " - Current Block Hash");
-                    Console.WriteLine(currentBlock.CreateHash() + " - Current Block CreateHash");
                     return false;
                 }
             }
-
             return true;
         }
 
