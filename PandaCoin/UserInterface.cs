@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace PandaCoin
 {
@@ -8,6 +9,8 @@ namespace PandaCoin
         private readonly BlockChain _blockChain;
         private readonly UsersDatabase _usersDatabase;
 
+        private Stopwatch _stopwatch = new Stopwatch();
+        
         public UserInterface(BlockChain blockChain, UsersDatabase usersDatabase)
         {
             _blockChain = blockChain;
@@ -127,7 +130,10 @@ namespace PandaCoin
             if (_usersDatabase.CheckIfUserExist(miner))
             {
                 Console.WriteLine("Started Mining Block with difficulty: {0}.", _blockChain.GetCurrentDifficulty());
+                _stopwatch.Start();
                 _blockChain.MineBlock(miner);
+                _stopwatch.Stop();
+                Console.WriteLine("Time of block mining: {0} milliseconds.", _stopwatch.ElapsedMilliseconds);
                 Console.WriteLine("BALANCE of the miner changed to: {0}", _blockChain.GetBalance(miner));
             }
             else
