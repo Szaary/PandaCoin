@@ -13,7 +13,7 @@ namespace PandaCoin
         static void Main(string[] args)
         {
             var userDatabase = new UsersDatabase();
-            // Added 3 users at start for testing purposes.
+            // Dodałem 3 użytkowników na start w celach testowych.
             userDatabase.CreateUser("Michal");
             userDatabase.CreateUser("Dorota");
             userDatabase.CreateUser("Filip");

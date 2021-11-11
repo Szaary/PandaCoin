@@ -76,8 +76,8 @@ namespace PandaCoin
         }
 
         /// <summary>
-        /// Funkcja używana do wykopania nowego bloku.
-        /// Następnie tworzymy blok i wyliczamy dla niego hash. 
+        /// Funkcja używana do wykopania nowego bloku. Tworzy transakcję dla kopiącego jako nagrodę, a
+        /// następnie tworzymy blok i wylicza dla niego hash. 
         ///
         /// W realnej wersji blockchainu zanim nasz blok zostanie dodany do listy przechodzi walidację i spośród
         /// możliwych wykopanych bloków wybierany jest najdłuższy. (zawiera np. najwięcej transakcji). 

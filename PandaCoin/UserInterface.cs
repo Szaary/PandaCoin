@@ -24,6 +24,7 @@ namespace PandaCoin
                                   "2 - Create transaction\n"+
                                   "3 - Start mining\n"+
                                   "4 - Check user wallet\n"+
+                                  "5 - Print Chain\n"+
                                   "9 - Exit");
                 
                 var command = Console.ReadLine();
@@ -44,12 +45,32 @@ namespace PandaCoin
                 {
                     CheckUserWallet();
                 }
+                else if (command == "5")
+                {
+                    PrintChain();
+                }
                 else if (command == "9")
                 {
                     Console.WriteLine("Exiting application");
                     break;
                 }
 
+            }
+        }
+
+        private void PrintChain()
+        {
+            foreach (var block in _blockChain.Chain)
+            {
+                Console.WriteLine("--------------------------------------------------");
+                Console.WriteLine("Hash: {0} ", block.Hash);
+                Console.WriteLine("Previous Hash: {0}\n", block.PreviousHash);
+
+                foreach (var transaction in block.Transactions)
+                {
+                    Console.WriteLine("Transaction From: {0} To: {1} Amount {2}", 
+                        transaction.From, transaction.To, transaction.Amount);
+                }
             }
         }
 
