@@ -21,8 +21,6 @@ namespace PandaCoin
         {
             while (true)
             {
-                Console.WriteLine("Is blockchain valid: {0}", _blockChain.IsValidChain());
-
                 Console.WriteLine("\n PandaCoin - is blockchain valid: {0}", _blockChain.IsValidChain() +
                                                                              "\n1 - Create user\n" +
                                                                              "2 - Create transaction\n" +

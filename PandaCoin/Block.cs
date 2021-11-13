@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -84,12 +85,9 @@ namespace PandaCoin
         {
             using (var sha256 = SHA256.Create())
             {
-                var blockTransactions="";
-                foreach (var transaction in Transactions)
-                {
-                    blockTransactions += transaction.From + transaction.To + transaction.Amount;
-                }
-                
+                var blockTransactions= Transactions.Aggregate("", (current, transaction) =>
+                    $"{current}{(transaction.From + transaction.To + transaction.Amount)}");
+
                 var rawData = PreviousHash + _timeStamp + blockTransactions + _nonce;
                 var bytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(rawData));
                 return Encoding.Default.GetString(bytes);
